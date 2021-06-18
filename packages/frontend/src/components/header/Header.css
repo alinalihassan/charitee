@@ -1,0 +1,13 @@
+.header {
+  background-color: #fff;
+  height: 70px;
+  z-index: 400;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 60px;
+}
+
+.header .logo {
+  width: 150px;
+}

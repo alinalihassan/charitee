@@ -1,0 +1,17 @@
+{
+	"name": "charitee",
+	"version": "0.0.1",
+	"description": "Charitee",
+	"license": "UNLICENSED",
+	"author": "Alin Ali Hassan",
+	"private": true,
+  "scripts": {
+    "build": "lerna run build --stream",
+    "start": "lerna run start --stream",
+    "bootstrap": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "workspaces": ["packages/*"]
+}

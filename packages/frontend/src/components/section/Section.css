@@ -1,0 +1,45 @@
+.section {
+  margin-top: 75px;
+  padding: 60px 0;
+}
+
+.section p {
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+@media (min-width: 1200px) {
+  .section p {
+    font-size: 1.3rem;
+  }
+}
+
+.wrapper {
+  padding: 10%;
+}
+
+.reversed {
+  background-color: #f8f8f6;
+}
+
+.phone-div {
+  display: table;
+  margin: 0 auto;
+}
+
+.phone {
+  position: relative;
+  background: none;
+  /* margin: 0px 60px; */
+  float: right;
+  margin: auto;
+  height: 551px;
+  width: 275px;
+}
+
+.reversed .phone {
+  float: left;
+}
+
+.description {
+  margin-top: 60px;
+}

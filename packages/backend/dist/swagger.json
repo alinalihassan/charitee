@@ -1,0 +1,431 @@
+{
+    "components": {
+        "examples": {},
+        "headers": {},
+        "parameters": {},
+        "requestBodies": {},
+        "responses": {},
+        "schemas": {
+            "DataResponse": {
+                "properties": {
+                    "status": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "data": {}
+                },
+                "required": [
+                    "status",
+                    "data"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ManyDataResponse": {
+                "properties": {
+                    "status": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "count": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "nextPage": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "data": {
+                        "items": {},
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "status",
+                    "count",
+                    "nextPage",
+                    "data"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ErrorMsg": {
+                "properties": {
+                    "status": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "detail": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "status",
+                    "message"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "IUserCreate": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "DefaultResponse": {
+                "properties": {
+                    "status": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "status",
+                    "message"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "jwt": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "description": "Token Authentication",
+                "in": "header"
+            }
+        }
+    },
+    "info": {
+        "title": "charitee-backend",
+        "version": "0.1.0",
+        "description": "Charitee Backend",
+        "license": {
+            "name": "UNLICENSED"
+        },
+        "contact": {
+            "name": "Alin Ali Hassan"
+        }
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/organizations/{organizationId}": {
+            "get": {
+                "operationId": "GetOrganizationById",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "organizationId",
+                        "required": true,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "/organizations": {
+            "get": {
+                "operationId": "GetOrganizations",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyDataResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "theme",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "country",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/projects/{projectId}": {
+            "get": {
+                "operationId": "GetProjectById",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "projectId",
+                        "required": true,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "/projects": {
+            "get": {
+                "operationId": "GetProjects",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyDataResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "theme",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "country",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/auth/Test": {
+            "get": {
+                "operationId": "Test",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "parameters": []
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "operationId": "Register",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "User already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMsg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IUserCreate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "operationId": "Login",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid Credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMsg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IUserCreate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/confirm-email": {
+            "get": {
+                "operationId": "ConfirmEmail",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No token, unable to verify email",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMsg"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid Token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMsg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ]
+}

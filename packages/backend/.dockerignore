@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+
+# Terraform
+terraform/
+
+# Python Cache
+__pycache__/
+.pytest_cache/
+
+# Node Modules
+*/node_modules/
+dist/
+
+# Virtual environment
+#.env/
+venv/
+
+# PyCharm
+.idea
+
+# README
+README.md
+
+# .env
+.env
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

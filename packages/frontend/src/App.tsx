@@ -9,7 +9,7 @@ import mockup_welcome from './assets/img/homepage/mockup-welcome.png'
 import mockup_home from './assets/img/homepage/mockup-home.png'
 import mockup_donate from './assets/img/homepage/mockup-donate.png'
 
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 export default function App() {
   return (

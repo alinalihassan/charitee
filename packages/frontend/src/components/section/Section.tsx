@@ -9,7 +9,8 @@ type SectionProps = {
   image: string,
   showButton?: boolean,
   buttonText?: string,
-  reversed?: boolean
+  reversed?: boolean,
+  first?: boolean
 } & typeof defaultProps
 
 const defaultProps = {
@@ -19,7 +20,7 @@ const defaultProps = {
 }
 
 const Section = (props: SectionProps) => ( 
-  <Row className={`section wrapper justify-content-md-center ${props.reversed ? "reversed" : ""}`}>
+  <Row className={`section wrapper justify-content-md-center ${props.reversed ? "reversed" : ""} ${props.first ? "first" : ""}`}>
     <Col xs={{order: props.reversed ? 1 : 0}} lg="5" className="description">
       <h1>{props.title}</h1>
       <p>{props.description}</p>

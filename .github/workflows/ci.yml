@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Charitee CI
 
 on:
   push:

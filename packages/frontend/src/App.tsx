@@ -13,16 +13,15 @@ import { Container, Row } from 'react-bootstrap'
 
 export default function App() {
   return (
-    <Container fluid style={{margin: 0, padding: 0}}>
-      <Row>
-        <Header />
-      </Row>
+    <Container className="App" fluid>
+      <Header />
       <Section
         title="Donating made easy"
         description="You can find the best charities locally and globally, and donate seamlessly with us."
         image={mockup_welcome}
         showButton={true}
         buttonText="Donate Now"
+        first={true}
       />
       <Section
         title="Trust in Charitee"

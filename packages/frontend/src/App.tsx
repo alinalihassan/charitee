@@ -33,6 +33,7 @@ export default function App() {
         title="Make a change"
         description="Find the right cause to fight for, be it climate change, COVID-19 or education around the world and in your city. It doesn't matter which one you choose as long as it matters to you!"
         image={mockup_donate}
+        showStoreButton={true}
       />
       <Footer />
     </Container>

@@ -1,5 +1,10 @@
-html, body, #root {
+:root, body, #root {
   height: 100%;
+}
+
+:root {
+  --text-color: #2d2d2d;
+  --primary-color: #ff1742;
 }
 
 .App {
@@ -10,7 +15,7 @@ html, body, #root {
   font-weight: 400;
   font-size: 15px;
   line-height: 25px;
-  color: #2d2d2d;
+  color: var(--text-color);
   overflow-x: hidden;
 }
 
@@ -74,27 +79,17 @@ h4 {
 a {
   font-family: "Manrope", sans-serif;
   font-weight: 700;
-  color: #2d2d2d;
+  color: var(--text-color);
   text-decoration: none;
 }
+
 a:hover {
-  opacity: 0.8;
+  color: #535353;
 }
 
 strong {
   font-family: "Manrope", sans-serif;
   font-weight: 700;
-}
-
-@media (min-width: 992px) {
-  .space--top {
-    margin-top: 30px;
-  }
-}
-@media (min-width: 992px) {
-  .space--top-long {
-    margin-top: 90px;
-  }
 }
 
 

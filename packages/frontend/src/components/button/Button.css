@@ -1,7 +1,7 @@
 .button {
   display: inline-block;
   border-radius: 8px;
-  background: #ff1742;
+  background: var(--primary-color);
   font-family: "Manrope", sans-serif;
   font-weight: 700;
   color: #fff;
@@ -15,4 +15,5 @@
 }
 .button:hover {
   opacity: 0.75;
+  color: #fff;
 }

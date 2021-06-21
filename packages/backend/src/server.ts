@@ -5,14 +5,12 @@ import { RegisterRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
 import { CustomError } from "./models/Error";
 import helmet from "helmet";
+import { swaggerDocs } from "./util/config";
 
 const app = express();
  
 // Connect to MongoDB
 connectDB();
-
-// Generate SwaggerUI Docs
-const docs = swaggerUi.generateHTML(import("./swagger.json"))
 
 // Express configuration
 app.set("port", process.env.SERVER_PORT || 4000);
@@ -22,11 +20,10 @@ app.use(helmet({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../../frontend', 'build')));
+app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => res.send(swaggerDocs));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../frontend', 'build', 'index.html'));
-});
-app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => res.send(swaggerUi.generateHTML(await import("./swagger.json"))));
+app.get('/', async (_req, res) => res.sendFile(path.join(__dirname, '../../frontend', 'build', 'index.html')));
+app.get('/ping', async (_req, res) => res.send("pong"))
 
 RegisterRoutes(app);
 
@@ -51,7 +48,7 @@ app.use(function errorHandler(
 
 const port = app.get("port");
 const server = app.listen(port, () =>
-  console.log(`Server started on http://localhost:${port}`)
+  console.log(`Server started on ${process.env.SERVER_HOST}:${port}`)
 );
 
 export default server;

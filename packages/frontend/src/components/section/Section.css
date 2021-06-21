@@ -1,6 +1,13 @@
 .section {
-  margin-top: 75px;
-  padding: 60px 0;
+  height: calc(100% - 70px);
+}
+
+.mobile-store-button {
+  margin-top: 50px;
+}
+
+.first {
+  margin-top: 70px;
 }
 
 .section p {
@@ -29,11 +36,9 @@
 .phone {
   position: relative;
   background: none;
-  /* margin: 0px 60px; */
   float: right;
   margin: auto;
-  height: 551px;
-  width: 275px;
+  width: 280px;
 }
 
 .reversed .phone {

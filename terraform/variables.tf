@@ -56,7 +56,7 @@ variable "ecs_task_execution_role_name" {
 
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
-  default     = "1"
+  default     = "2"
 }
 
 # App related config

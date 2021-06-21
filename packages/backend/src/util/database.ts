@@ -1,15 +1,4 @@
 import { ConnectionOptions, connect, mongo, connection} from "mongoose";
-import insertCountries from "../data/insert_countries"
-import insertOrganizations from "../data/insert_organizations"
-import insertThemes from "../data/insert_themes";
-import insertProjects from "../data/insert_projects";
-
-const initialData = async () => {
-  // insertCountries();
-  // insertThemes();
-  // insertOrganizations();
-  // insertProjects();
-}
 
 const initModels = async() => {
   require('../models/Country');
@@ -33,8 +22,6 @@ const connectDB = async () => {
 
     await initModels();
     console.log("Models Initialized");
-
-    initialData();
   } catch (err) {
     console.error(err.message);
     process.exit(1);

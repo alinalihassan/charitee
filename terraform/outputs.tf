@@ -8,10 +8,6 @@ output "database_hostname" {
   value = var.db_endpoint
 }
 
-output "docdb_hostname" {
-  value = aws_docdb_cluster.docdb.reader_endpoint
-}
-
 output "route53_nameservers" {
   value = aws_route53_zone.main.name_servers
 }

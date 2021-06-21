@@ -4,8 +4,8 @@ output "lb_hostname" {
   value = aws_lb.main.dns_name
 }
 
-output "postgres_hostname" {
-  value = aws_db_instance.rds_instance.endpoint
+output "database_hostname" {
+  value = var.db_endpoint
 }
 
 output "route53_nameservers" {

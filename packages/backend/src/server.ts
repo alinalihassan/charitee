@@ -10,7 +10,7 @@ import { swaggerDocs } from "./util/config";
 const app = express();
  
 // Connect to MongoDB
-// connectDB();
+connectDB();
 
 // Express configuration
 app.set("port", process.env.SERVER_PORT || 4000);

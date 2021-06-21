@@ -99,11 +99,6 @@ variable "fargate_memory" {
 
 # Database
 
-variable "db_port" {
-  description = "Database port"
-  default     = 27017
-}
-
 variable "db_name" {
   description = "Database name"
   default     = "test"

@@ -32,7 +32,7 @@ jobs:
       run: yarn run bootstrap --ci
 
     - name: Build packages
-      run: yarn run build --if-present
+      run: yarn run build
 
     - name: Build Docker Image
       run: docker build --tag charitee:latest .
@@ -48,7 +48,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - uses: kciter/aws-ecr-action@v2
+    - uses: kciter/aws-ecr-action@v3
       with:
         access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -92,7 +92,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - uses: actions/github-script@v3.1
+    - uses: actions/github-script@v4.0.2
       name: Terraform Pull Request
       if: github.event_name == 'pull_request'
       env:

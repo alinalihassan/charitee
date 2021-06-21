@@ -10,3 +10,10 @@ yarn-error.log*
 .DS_Store
 **/dist/
 **/build/
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

@@ -56,7 +56,7 @@ variable "ecs_task_execution_role_name" {
 
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
-  default     = "2"
+  default     = "1"
 }
 
 # App related config
@@ -68,12 +68,12 @@ variable "app_port" {
 
 variable "app_name" {
   description = "App name"
-  default = "Charitee"
+  default     = "Charitee"
 }
 
 variable "app_count" {
   description = "Number of docker containers to run"
-  default     = 2
+  default     = 1
 }
 
 variable "health_check_path" {
@@ -82,7 +82,7 @@ variable "health_check_path" {
 
 variable "jwt_secret" {
   description = "JWT secret"
-  default = "E33F6C379DB55425B7861727A256CE33F6C379DB55425B7861727A256CE33F6C379DB55425B7861727A256C"
+  default     = "E33F6C379DB55425B7861727A256CE33F6C379DB55425B7861727A256CE33F6C379DB55425B7861727A256C"
 }
 
 # Fargate
@@ -123,10 +123,10 @@ variable "db_password" {
 
 variable "db_endpoint" {
   description = "Database endpoint"
-  default = "cluster0-shard-00-00.yxoom.mongodb.net:27017,cluster0-shard-00-01.yxoom.mongodb.net:27017,cluster0-shard-00-02.yxoom.mongodb.net"
+  default     = "cluster0-shard-00-00.yxoom.mongodb.net:27017,cluster0-shard-00-01.yxoom.mongodb.net:27017,cluster0-shard-00-02.yxoom.mongodb.net"
 }
 
 variable "db_options" {
   description = "Database options"
-  default = "ssl=true&replicaSet=atlas-qo8t4i-shard-0&authSource=admin&retryWrites=true&w=majority"
+  default     = "ssl=true&replicaSet=atlas-qo8t4i-shard-0&authSource=admin&retryWrites=true&w=majority"
 }

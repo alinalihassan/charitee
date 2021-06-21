@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 
 import Header from '../../components/header/Header';
@@ -9,7 +8,7 @@ import mockup_welcome from '../../assets/img/homepage/mockup-welcome.png'
 import mockup_home from '../../assets/img/homepage/mockup-home.png'
 import mockup_donate from '../../assets/img/homepage/mockup-donate.png'
 
-import { Container } from 'react-bootstrap'
+import { Container } from 'react-grid-system'
 
 export default function Home() {
   return (

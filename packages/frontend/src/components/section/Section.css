@@ -1,5 +1,5 @@
 .section {
-  height: calc(100% - 70px);
+  height: calc(100% - 20% - 70px);
 }
 
 .mobile-store-button {

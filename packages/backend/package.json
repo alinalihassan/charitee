@@ -9,7 +9,7 @@
     "build:mjml": "mkdir -p email_templates/html && mjml email_templates/mjml/*.mjml -o email_templates/html",
     "build:tsoa": "tsoa spec-and-routes",
     "build:ts": "tsc",
-    "build": "yarn run build:mjml & yarn run build:tsoa & yarn run build:ts",
+    "build": "yarn run build:mjml && yarn run build:tsoa && yarn run build:ts",
     "start": "node dist/server.js",
     "start:dev": "nodemon"
   },

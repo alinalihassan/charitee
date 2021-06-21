@@ -1,4 +1,5 @@
 import { Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -7,9 +8,9 @@ export default function Footer() {
         <Col>
           <span>© {(new Date().getFullYear())} Charitee</span>
 
-          <a href="https://www.google.com">Terms & Conditions</a>
-          <a href="https://www.google.com">Privacy Policy</a>
-          <a href="https://www.google.com">Contact</a>
+          <Link to="/tos">Terms & Conditions</Link>
+          <Link to="/privacy">Privacy Policy</Link>
+          <a href="mailto:alin@charit.ee">Contact</a>
         </Col>
     </Row>
   )

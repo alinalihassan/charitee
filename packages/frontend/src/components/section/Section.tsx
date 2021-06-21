@@ -29,7 +29,7 @@ const Section = (props: SectionProps) => (
       <h1>{props.title}</h1>
       <p>{props.description}</p>
       {props.showButton && 
-        <Button text={props.buttonText} link={"TODO"} />
+        <Button text={props.buttonText} link={"https://www.example.com"} />
       }
       {props.showStoreButton &&
       <div style={{display: 'flex'}}>

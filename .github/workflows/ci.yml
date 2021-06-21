@@ -32,7 +32,7 @@ jobs:
       run: yarn run bootstrap --ci
 
     - name: Build packages
-      run: yarn run build --if-present
+      run: yarn run build
 
     - name: Build Docker Image
       run: docker build --tag charitee:latest .

@@ -1,3 +1,4 @@
+import { ScreenClassProvider } from "react-grid-system";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,13 +12,15 @@ import TermsOfService from "./pages/terms_of_service/TermsOfService";
 
 export default function App() {
   return (
-    <Router>
+    <ScreenClassProvider>
+      <Router>
         <Switch>
-          <Route path="/privacy" component={PrivacyPolicy}/>
-          <Route path="/tos" component={TermsOfService}/>
-          <Route exact path="/" component={Home}/>
+          <Route path="/privacy" component={PrivacyPolicy} />
+          <Route path="/tos" component={TermsOfService} />
+          <Route exact path="/" component={Home} />
           <Route path='*' exact={true} component={NotFound} />
         </Switch>
-    </Router>
+      </Router>
+    </ScreenClassProvider>
   );
 }

@@ -1,7 +1,7 @@
 import logo from '../../assets/img/logo.png'
 import './Header.css'
 
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-grid-system'
 
 export default function Header() {
   return (

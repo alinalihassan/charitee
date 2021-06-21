@@ -37,6 +37,16 @@ variable "email_mx_records" {
   default     = ["1 ASPMX.L.GOOGLE.COM.", "5 ALT1.ASPMX.L.GOOGLE.COM.", "5 ALT2.ASPMX.L.GOOGLE.COM.", "10 ALT3.ASPMX.L.GOOGLE.COM.", "10 ALT4.ASPMX.L.GOOGLE.COM."]
 }
 
+variable "spf_records" {
+  description = "Route53 MX record which defines vaild mail servers. Defaults to `v=spf1 include:amazonses.com -all`"
+  default     = ["v=spf1 include:amazonses.com -all"]
+}
+
+variable "dmarc_rua" {
+  description = "DMARC Reporting URI of aggregate reports, expects an email address."
+  default     = "dmarc_reports@charit.ee"
+}
+
 # ECS related config
 
 variable "ecs_task_execution_role_name" {

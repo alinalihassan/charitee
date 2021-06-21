@@ -1,6 +1,6 @@
 import './Section.css'
 import Button from '../button/Button'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-grid-system'
 import MobileStoreButton from '../MobileStoreButton/MobileStoreButton'
 
 
@@ -24,8 +24,8 @@ const defaultProps = {
 }
 
 const Section = (props: SectionProps) => (
-  <Row className={`section wrapper justify-content-md-center ${props.reversed ? "reversed" : ""} ${props.first ? "first" : ""}`}>
-    <Col xs={{order: props.reversed ? 1 : 0}} lg="5" className="description">
+  <Row justify="center" direction={props.reversed ? "row-reverse" : "row"} className={`section wrapper ${props.reversed ? "reversed" : ""} ${props.first ? "first" : ""}`}>
+    <Col xs={5} className="description">
       <h1>{props.title}</h1>
       <p>{props.description}</p>
       {props.showButton && 
@@ -38,7 +38,7 @@ const Section = (props: SectionProps) => (
       </div>
       }
     </Col>
-    <Col xs={{order: props.reversed ? 0 : 1}} lg="5">
+    <Col xs={5}>
       <img src={props.image} className='phone' alt="Charitee Screenshot"/>
     </Col>
   </Row>

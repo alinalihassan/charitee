@@ -1,4 +1,4 @@
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-grid-system'
 import { Link } from 'react-router-dom'
 import './Footer.css'
 

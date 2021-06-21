@@ -16,7 +16,7 @@ data "template_file" "charitee_app" {
     fargate_memory = var.fargate_memory
     aws_region     = var.aws_region
 
-    server_host = "${var.domain_name}"
+    server_host = "https://${var.domain_name}"
 
     db_username = var.db_username
     db_password = var.db_password

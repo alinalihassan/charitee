@@ -47,9 +47,8 @@ app.use(function errorHandler(
 });
 
 const port = app.get("port");
-const server = app.listen(port, () => {
-  console.log("test");
+const server = app.listen(port, () =>
   console.log(`Server started on ${process.env.SERVER_HOST}:${port}`)
-});
+);
 
 export default server;

@@ -45,11 +45,11 @@
         "value":"${db_password}"
       },
       {
-        "name":"DB_HOSTNAME",
+        "name":"DB_HOST",
         "value":"${db_endpoint}"
       },
       {
-        "name":"DB_DATABASE",
+        "name":"DB_NAME",
         "value":"${db_name}"
       },
       {

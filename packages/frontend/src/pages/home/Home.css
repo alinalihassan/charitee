@@ -99,4 +99,5 @@ strong {
   src: url("../../assets/fonts/Manrope.ttf") format("truetype-variations");
   font-weight: 100 1000;
   font-stretch: 25% 200%;
+  font-display: swap;
 }

@@ -14,12 +14,14 @@ import {
   Route,
   Security,
   SuccessResponse,
+  Tags,
 } from "tsoa";
 import { CustomError } from "../models/Error";
 import { DataResponse, DefaultResponse, ErrorMsg } from "../models/Interfaces";
 import { StatusCodes } from "http-status-codes";
 import { secretKey, emailService } from "../util/config";
 
+@Tags("Authentication")
 @Route("auth")
 export class AuthenticationController extends Controller {
   @Security("jwt")

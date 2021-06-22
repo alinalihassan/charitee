@@ -6,8 +6,10 @@ import {
   Path,
   Query,
   Route,
+  Tags,
 } from "tsoa";
 
+@Tags("Organization")
 @Route("organizations")
 export class OrganizationController extends Controller {
 

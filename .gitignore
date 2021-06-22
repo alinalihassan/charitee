@@ -17,3 +17,6 @@ yarn-error.log*
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# IDE
+.vscode

@@ -5,7 +5,6 @@ import { RegisterRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
 import { CustomError } from "./models/Error";
 import helmet from "helmet";
-import { swaggerDocs } from "./util/config";
 
 const app = express();
  
@@ -20,7 +19,7 @@ app.use(helmet({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../../frontend', 'build')));
-app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => res.send(swaggerDocs));
+app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => res.send(swaggerUi.generateHTML(await import("./swagger.json"))));
 
 app.get('/', async (_req, res) => res.sendFile(path.join(__dirname, '../../frontend', 'build', 'index.html')));
 app.get('/ping', async (_req, res) => res.send("pong"))

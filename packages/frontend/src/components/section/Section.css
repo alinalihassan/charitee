@@ -39,6 +39,7 @@
   float: right;
   margin: auto;
   width: 280px;
+  aspect-ratio: 891 / 1786;
 }
 
 .reversed .phone {

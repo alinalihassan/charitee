@@ -11,7 +11,6 @@ const initModels = async() => {
 const connectDB = async () => {
   try {
     const mongoURI: string = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?${process.env.DB_OPTIONS}`;
-    console.log(mongoURI);
     const options: ConnectionOptions = {
       useNewUrlParser: true,
       useCreateIndex: true,

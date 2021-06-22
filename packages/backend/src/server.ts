@@ -5,6 +5,7 @@ import { RegisterRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
 import { CustomError } from "./models/Error";
 import helmet from "helmet";
+import morgan from "morgan"
 
 const app = express();
  
@@ -16,6 +17,7 @@ app.set("port", process.env.SERVER_PORT || 4000);
 app.use(helmet({
   contentSecurityPolicy: false
 }));
+app.use(morgan(':method :url :status - :response-time ms'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../../frontend', 'build')));

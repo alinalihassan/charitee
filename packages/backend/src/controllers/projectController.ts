@@ -1,4 +1,4 @@
-import { DataResponse, IProject, ManyDataResponse } from "../models/Interfaces";
+import { DataResponse, ManyDataResponse } from "../models/Interfaces";
 import { ProjectService } from "../services/projectService";
 import {
   Controller,
@@ -6,8 +6,10 @@ import {
   Path,
   Query,
   Route,
+  Tags,
 } from "tsoa";
 
+@Tags("Project")
 @Route("projects")
 export class ProjectController extends Controller {
 

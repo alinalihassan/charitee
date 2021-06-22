@@ -1,15 +1,4 @@
 import { ConnectionOptions, connect, mongo, connection} from "mongoose";
-import insertCountries from "../data/insert_countries"
-import insertOrganizations from "../data/insert_organizations"
-import insertThemes from "../data/insert_themes";
-import insertProjects from "../data/insert_projects";
-
-const initialData = async () => {
-  // insertCountries();
-  // insertThemes();
-  // insertOrganizations();
-  // insertProjects();
-}
 
 const initModels = async() => {
   require('../models/Country');
@@ -21,7 +10,8 @@ const initModels = async() => {
 
 const connectDB = async () => {
   try {
-    const mongoURI: string = `mongodb://${process.env.DB_USER}:${process.env.DBPASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}?${process.env.DB_OPTIONS}`;
+    const mongoURI: string = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?${process.env.DB_OPTIONS}`;
+    console.log(mongoURI);
     const options: ConnectionOptions = {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -33,8 +23,6 @@ const connectDB = async () => {
 
     await initModels();
     console.log("Models Initialized");
-
-    initialData();
   } catch (err) {
     console.error(err.message);
     process.exit(1);

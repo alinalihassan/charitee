@@ -16,6 +16,7 @@ const MobileStoreButton = (props: MobileStoreButtonProps) => (
   <div className="mobile-store-button" style={{ height: 75, width: 225, marginRight: 20, display: 'inline-block' }}>
     <a
       href={props.url}
+      aria-label={props.store === 'ios' ? "App Store Link" : "Play Store Link"}
       style={{
         background: `url(${imageLinks[props.store]}) no-repeat`,
         backgroundSize: 'contain',

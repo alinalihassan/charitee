@@ -46,6 +46,7 @@ app.use(function errorHandler(
 });
 
 const port = app.get("port");
+console.log("test log");
 const server = app.listen(port, () =>
   console.log(`Server started on ${process.env.SERVER_HOST}:${port}`)
 );

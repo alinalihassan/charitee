@@ -3,16 +3,16 @@ export interface DefaultResponse {
   message: string;
 }
 
-export interface DataResponse {
+export interface DataResponse<T> {
   status: number;
-  data: any;
+  data: T;
 }
 
-export interface ManyDataResponse {
+export interface ManyDataResponse<T> {
   status: number;
   count: number;
-  nextPage: number;
-  data: any[];
+  nextPage?: number;
+  data: T[];
 }
 
 export interface ErrorMsg {

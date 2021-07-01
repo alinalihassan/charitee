@@ -40,8 +40,14 @@ const projectSchema: Schema = new Schema({
   goal: {
     type: Number
   },
-  // imageGallerySize;
-  // image;
+  images: [{
+    url: {
+      type: String
+    },
+    title: {
+      type: String
+    }
+  }],
   longTermImpact: {
     type: String
   },
@@ -92,21 +98,13 @@ const projectSchema: Schema = new Schema({
     type: String,
     required: true
   },
-  // videos: [{
-  //   url: {
-  //     type: String,
-  //     required: true
-  //   }
-  // }]
+  videos: [{
+    url: {
+      type: String,
+      required: true
+    }
+  }]
 });
-
-projectSchema.set('toObject', {
-  transform: function (doc: Document, ret: any) {
-    ret.id = ret._id
-    delete ret._id
-    delete ret.__v
-  }
-})
 
 const Project: Model<IProjectDocument> = model("Project", projectSchema);
 

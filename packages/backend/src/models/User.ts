@@ -39,14 +39,6 @@ const userSchema: Schema = new Schema({
   }
 });
 
-userSchema.set('toObject', {
-  transform: function (doc: Document, ret: any) {
-    ret.id = ret._id
-    delete ret._id
-    delete ret.__v
-  }
-})
-
 const User: Model<IUser> = model("User", userSchema);
 
 export default User;

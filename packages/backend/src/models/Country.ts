@@ -1,4 +1,4 @@
-import { Document, Model, model, Schema } from "mongoose";
+import { Model, model, Schema } from "mongoose";
 import { ICountryDocument } from "./Documents";
 
 const countrySchema: Schema = new Schema({
@@ -13,14 +13,6 @@ const countrySchema: Schema = new Schema({
     unique: true
   }
 });
-
-countrySchema.set('toObject', {
-  transform: function (doc: Document, ret: any) {
-    ret.id = ret._id
-    delete ret._id
-    delete ret.__v
-  }
-})
 
 const Country: Model<ICountryDocument> = model("Country", countrySchema);
 

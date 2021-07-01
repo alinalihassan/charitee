@@ -1,4 +1,4 @@
-import { DataResponse } from "../models/Interfaces";
+import { DataResponse, ITheme, ManyDataResponse } from "../models/Interfaces";
 import { ThemeService } from "../services/themeService";
 import {
   Controller,
@@ -15,12 +15,12 @@ export class ThemeController extends Controller {
   @Get("{themeId}")
   public async getThemeById(
     @Path() themeId: string
-  ): Promise<DataResponse> {
+  ): Promise<DataResponse<ITheme>> {
     return new ThemeService().getById(themeId);
   }
 
   @Get()
-  public async getThemes(): Promise<DataResponse> {
+  public async getThemes(): Promise<ManyDataResponse<ITheme>> {
     return new ThemeService().get();
   }
 }

@@ -1,4 +1,4 @@
-import { DataResponse, ManyDataResponse} from "../models/Interfaces";
+import { DataResponse, IOrganization, ManyDataResponse} from "../models/Interfaces";
 import { OrganizationService } from "../services/organizationService";
 import {
   Controller,
@@ -16,7 +16,7 @@ export class OrganizationController extends Controller {
   @Get("{organizationId}")
   public async getOrganizationById(
     @Path() organizationId: number
-  ): Promise<DataResponse> {
+  ): Promise<DataResponse<IOrganization>> {
     return new OrganizationService().getById(organizationId);
   }
 
@@ -25,7 +25,7 @@ export class OrganizationController extends Controller {
     @Query() page?: number,
     @Query() theme?: string,
     @Query() country?: string
-  ): Promise<ManyDataResponse> {
+  ): Promise<ManyDataResponse<IOrganization>> {
     return new OrganizationService().get(page ? page : 0, theme, country);
   }
 }

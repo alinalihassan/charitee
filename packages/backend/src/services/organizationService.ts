@@ -2,11 +2,11 @@ import Theme from "../models/Theme"
 import { IThemeDocument, ICountryDocument, IOrganizationDocument } from "../models/Documents"
 import Country from "../models/Country"
 import Organization from "../models/Organization"
-import { DataResponse, ManyDataResponse } from "../models/Interfaces"
+import { DataResponse, IOrganization, ManyDataResponse } from "../models/Interfaces"
 import { StatusCodes } from "http-status-codes"
 
 export class OrganizationService {
-    public async get(page: number = 0, themeId: string = null, countryCode: string = null): Promise<ManyDataResponse> {
+    public async get(page: number = 0, themeId: string = null, countryCode: string = null): Promise<ManyDataResponse<IOrganization>> {
         let query: any = {}
     
         const theme: IThemeDocument = await Theme.findOne({id: themeId}).exec()
@@ -30,8 +30,8 @@ export class OrganizationService {
         return {status: StatusCodes.OK, count: count, nextPage: nextPage, data: organizations};
     }
 
-    public async getById(id: number): Promise<DataResponse> {
-        let organization = Organization.findById(id)
+    public async getById(id: number): Promise<DataResponse<IOrganization>> {
+        let organization = await Organization.findById(id)
             .populate('themes')
             .populate('address.country')
             .exec();

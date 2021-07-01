@@ -35,7 +35,7 @@ export class AuthenticationController extends Controller {
   @Post("register")
   public async register(
     @Body() userParams: IUserCreate
-  ): Promise<DataResponse> {
+  ): Promise<DataResponse<string>> {
     this.setStatus(201)
     let email = userParams.email
     let password = userParams.password
@@ -83,7 +83,7 @@ export class AuthenticationController extends Controller {
   @Post("login")
   public async login(
     @Body() userParams: IUserCreate
-  ): Promise<DataResponse> {
+  ): Promise<DataResponse<string>> {
     let email = userParams.email
     let password = userParams.password
 

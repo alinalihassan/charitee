@@ -2,12 +2,12 @@ import Theme from "../models/Theme"
 import { IThemeDocument, ICountryDocument, IProjectDocument } from "../models/Documents"
 import Country from "../models/Country"
 import Project from "../models/Project"
-import { DataResponse } from "../models/Interfaces"
+import { DataResponse, IProject } from "../models/Interfaces"
 import { ManyDataResponse } from "../models/Interfaces"
 import { StatusCodes } from "http-status-codes"
 
 export class ProjectService {
-  public async get(page: number = 0, themeId: string = null, countryCode: string = null): Promise<ManyDataResponse> {
+  public async get(page: number = 0, themeId: string = null, countryCode: string = null): Promise<ManyDataResponse<IProject>> {
     let query: any = {}
 
     const theme: IThemeDocument = await Theme.findOne({ id: themeId }).exec()
@@ -31,8 +31,8 @@ export class ProjectService {
     return { status: StatusCodes.OK, count: count, nextPage: nextPage, data: projects };
   }
 
-  public async getById(id: number): Promise<DataResponse> {
-    let project = Project.findById(id)
+  public async getById(id: number): Promise<DataResponse<IProject>> {
+    let project = await Project.findById(id)
       .populate('themes')
       .populate('countries')
       .exec();

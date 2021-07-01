@@ -5,7 +5,7 @@ import Theme from '../../../backend/src/models/Theme';
 import Country from '../../../backend/src/models/Country';
 import Organization from '../../../backend/src/models/Organization';
 import Project from '../../../backend/src/models/Project';
-import { IProject } from '../../../backend/src/models/Interfaces';
+import { IImage, IProject } from '../../../backend/src/models/Interfaces';
 import { CallbackError } from 'mongoose';
 
 const insertProjects = async () => {
@@ -29,7 +29,7 @@ const insertProjects = async () => {
         var project: any = projects[p]
         try {
             // Set Theme Array
-            var theme_objs: Array<IThemeDocument> = []
+            let theme_objs: Array<IThemeDocument> = []
             if (project.themes != null && project.themes.theme != null) {
                 if (project.themes.theme instanceof Array) {
                     for (var j = 0; j < project.themes.theme.length; j++) {
@@ -55,7 +55,7 @@ const insertProjects = async () => {
             }
 
             // Set Country Array
-            var country_objs: Array<ICountryDocument> = []
+            let country_objs: Array<ICountryDocument> = []
             if (project.countries != null && project.countries.country != null) {
                 if (project.countries.country instanceof Array) {
                     for (j = 0; j < project.countries.country.length; j++) {
@@ -97,7 +97,7 @@ const insertProjects = async () => {
             // Set Organization
             if (project.organization === undefined) {
                 console.error(`Organization doesn't exist for project ${project.title}`)
-                return;
+                continue;
             }
 
             var organization: IOrganizationDocument | undefined;
@@ -110,21 +110,40 @@ const insertProjects = async () => {
             }
             if (organization === undefined) {
                 console.error(`Organization not found ${project.organization.name}`)
-                return;
+                continue;
             }
 
             // Fix Donation Options
             if (project.donationOptions === undefined) {
                 console.error(`Donation Options don't exist for project ${project.title}`)
-                return;
+                continue;
             }
-            var donation_options: Array<any> = [];
+            let donation_options: Array<any> = [];
             project.donationOptions.donationOption.forEach((option: any) => {
                 donation_options.push({
                     amount: +option.amount,
                     description: option.description
                 })
             })
+
+            // Images
+            let project_images: Array<IImage> = [];
+            let images_body: any = (await got.get(`https://api.globalgiving.org/api/public/projectservice/projects/${project.id}/imagegallery?api_key=${process.env.GLOBALGIVING_KEY}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })).body;
+
+            let images = JSON.parse(images_body)['images']['image'];
+
+            for (var l = 0; l < images.length; l++) {
+                var entry = images[l];
+                project_images.push({
+                    title: entry.title,
+                    url: entry['imagelink'][entry['imagelink'].length-1]['url']
+                });
+            }
 
             var proj_fields: any = {
                 active: JSON.parse(project.active),
@@ -133,10 +152,11 @@ const insertProjects = async () => {
                 approvedDate: new Date(project.approvedDate),
                 country: default_country,
                 countries: country_objs,
-                dateOfMostRecentReport: new Date(project.dateOfMostRecentReport),
+                dateOfMostRecentReport: project.dateOfMostRecentReport != null ? new Date(project.dateOfMostRecentReport) : null,
                 donationOptions: donation_options,
                 funding: +project.funding,
                 goal: +project.goal,
+                images: project_images,
                 longTermImpact: project.longTermImpact,
                 modifiedDate: new Date(project.modifiedDate),
                 need: project.need,
@@ -151,9 +171,11 @@ const insertProjects = async () => {
                 themes: theme_objs,
                 title: project.title,
                 type: project.type,
-                // videos: null
+                videos: project.video != null ? project.videos : []
             }
-            new Project(proj_fields).save((err: CallbackError, doc: IProject) => {});
+            new Project(proj_fields).save((err: CallbackError, doc: IProject) => {
+                // console.error(err)
+            });
         } catch(e) {console.error(e)}
     }
 }

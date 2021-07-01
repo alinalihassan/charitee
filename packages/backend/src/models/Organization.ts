@@ -59,24 +59,6 @@ const organizationSchema: Schema = new Schema({
   }]
 });
 
-function removeFields(obj: any) {
-  for(var prop in obj) {
-    if (prop === '_id' || prop === '__v')
-      delete obj[prop];
-    else if (typeof obj[prop] === 'object')
-      removeFields(obj[prop]);
-  }
-}
-
-organizationSchema.set('toObject', {
-  transform: function (doc: Document, ret: any) {
-    ret.id = ret._id
-    removeFields(ret)
-    // delete ret._id
-    // delete ret.__v
-  }
-})
-
 const Organization: Model<IOrganizationDocument> = model("Organization", organizationSchema);
 
 export default Organization;

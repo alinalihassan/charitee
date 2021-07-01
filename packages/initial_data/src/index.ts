@@ -40,7 +40,7 @@ const initModels = async() => {
 }
 
 const main = async () => {
-  const mongoURI: string = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}?${process.env.MONGO_OPTIONS}`;
+  const mongoURI: string = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?${process.env.DB_OPTIONS}`;
   const options: ConnectionOptions = {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -51,7 +51,7 @@ const main = async () => {
   await initModels();
   await initialData();
 
-  exit(0)
+  exit(0);
 };
 
 main()

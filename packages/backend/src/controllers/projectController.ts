@@ -1,4 +1,4 @@
-import { DataResponse, ManyDataResponse } from "../models/Interfaces";
+import { DataResponse, IProject, ManyDataResponse } from "../models/Interfaces";
 import { ProjectService } from "../services/projectService";
 import {
   Controller,
@@ -16,7 +16,7 @@ export class ProjectController extends Controller {
   @Get("{projectId}")
   public async getProjectById(
     @Path() projectId: number
-  ): Promise<DataResponse> {
+  ): Promise<DataResponse<IProject>> {
     return new ProjectService().getById(projectId);
   }
 
@@ -25,7 +25,7 @@ export class ProjectController extends Controller {
     @Query() page?: number,
     @Query() theme?: string,
     @Query() country?: string
-  ): Promise<ManyDataResponse> {
+  ): Promise<ManyDataResponse<IProject>> {
     return new ProjectService().get(page ? page : 0, theme, country);
   }
 }

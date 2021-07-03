@@ -13,7 +13,7 @@ const app = express();
 connectDB();
 
 // Express configuration
-app.set("port", process.env.SERVER_PORT || 4000);
+app.set("port", process.env.PORT || 4000);
 app.use(helmet({
   contentSecurityPolicy: false
 }));

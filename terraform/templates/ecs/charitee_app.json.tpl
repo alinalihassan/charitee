@@ -25,7 +25,7 @@
         "value": "${server_host}"
       },
       {
-        "name": "SERVER_PORT",
+        "name": "PORT",
         "value": "${app_port}"
       },
       {

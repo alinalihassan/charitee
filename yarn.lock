@@ -9068,9 +9068,9 @@ jest@26.6.0:
     jest-cli "^26.6.0"
 
 jose@^3.12.3:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-3.13.0.tgz#c899ba375b05fa398bee8b5ba0f10f96625d9868"
-  integrity sha512-tTZayOvpOX8y/W7FuCL6Sma9sElbA80ImDck86a6ge70lyBpQngx557PtP9Aro4SLEOPtZVVxM1P/boPzy+m7A==
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-3.14.0.tgz#935dce329af54586441ef74b0362fac7d1225c57"
+  integrity sha512-Hk4yFVGiSTuryL0XVyRTCvCPoD9eDCvEX/t+SpHTXXeNXsoxyopPLhoCLTt90vnu7yeIYXDdJWHNgI3Ix4H1FQ==
 
 js-beautify@^1.6.14:
   version "1.14.0"

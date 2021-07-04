@@ -1,9 +1,9 @@
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 0.15"
   required_providers {
-    aws = {
-      version = ">= 3.34.0"
-      source  = "hashicorp/aws"
+    google = {
+      source  = "hashicorp/google"
+      version = "3.74.0"
     }
   }
 
@@ -11,7 +11,7 @@ terraform {
     organization = "charitee"
 
     workspaces {
-      name = "Charitee"
+      name = "charitee-dev"
     }
   }
 }

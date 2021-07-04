@@ -19,7 +19,8 @@ import {
 import { CustomError } from "../models/Error";
 import { DataResponse, DefaultResponse, ErrorMsg } from "../models/Interfaces";
 import { StatusCodes } from "http-status-codes";
-import { secretKey, emailService } from "../util/config";
+import { secretKey } from "../util/config";
+import { send_email } from "../util/email";
 
 @Tags("Authentication")
 @Route("auth")
@@ -72,7 +73,7 @@ export class AuthenticationController extends Controller {
       .setExpirationTime('1h')
       .sign(secretKey);
 
-    emailService.send_email(email, "Confirm Email", "activation", {
+    send_email(email, "Confirm Email", "activation", {
       URL: process.env.SERVER_HOST + "/api/auth/confirm-email?token=" + token,
     });
 

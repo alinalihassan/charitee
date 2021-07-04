@@ -70,7 +70,7 @@ resource "google_compute_target_https_proxy" "default" {
 
 resource "google_compute_managed_ssl_certificate" "default" {
   project = google_project.web-project.project_id
-  name = "charitee-ssl-cert"
+  name    = "charitee-ssl-cert"
 
   managed {
     domains = ["${var.domain_name}.", "www.${var.domain_name}."]

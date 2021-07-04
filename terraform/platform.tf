@@ -1,5 +1,8 @@
 data "google_organization" "org" {
   domain = "charit.ee"
+  depends_on = [
+    google_project_service.resource-manager
+  ]
 }
 
 resource "google_folder" "main" {

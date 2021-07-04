@@ -27,3 +27,15 @@ resource "google_project_service" "dns" {
   project = google_project.web-project.id
   service = "dns.googleapis.com"
 }
+
+# Billing API
+resource "google_project_service" "billing" {
+  project = google_project.web-project.id
+  service = "cloudbilling.googleapis.com"
+}
+
+# Billing API
+resource "google_project_service" "resource-manager" {
+  project = google_project.web-project.id
+  service = "cloudresourcemanager.googleapis.com"
+}

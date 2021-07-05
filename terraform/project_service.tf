@@ -39,3 +39,9 @@ resource "google_project_service" "resource-manager" {
   project = google_project.web-project.id
   service = "cloudresourcemanager.googleapis.com"
 }
+
+# Secrets Manager API
+resource "google_project_service" "secrets-manager" {
+  project = google_project.web-project.id
+  service = "secretmanager.googleapis.com"
+}

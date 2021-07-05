@@ -73,7 +73,7 @@ jobs:
       if: github.event_name == 'pull_request'
       working-directory: terraform
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
 
     - name: Terraform Apply
       id: apply
@@ -81,7 +81,7 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: terraform
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
     
     - name: Google Cloud Run Redeploy
       run: |-

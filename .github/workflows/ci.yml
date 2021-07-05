@@ -32,7 +32,7 @@ jobs:
     - name: Build & Deploy Docker Image
       run: |-
         docker build --tag charitee:latest .
-        ${{ secrets.GCLOUD_SERVICE_JSON }} | docker login -u _json_key --password-stdin https://eu.gcr.io
+        ${{ secrets.GCLOUD_SERVICE_KEY }} | docker login -u _json_key --password-stdin https://eu.gcr.io
         docker tag charitee:latest eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
         docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
 

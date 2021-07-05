@@ -46,9 +46,8 @@ jobs:
     
     - name: Push Image to Google Registry Container
       run: |-
-        gcloud builds submit \
-          --quiet \
-          --tag "eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest"
+        docker tag charitee eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee
+        docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee
     
     # - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
     #   with:

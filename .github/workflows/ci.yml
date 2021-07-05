@@ -44,6 +44,9 @@ jobs:
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         export_default_credentials: true
     
+    - name: Test
+      run: gcloud projects list
+    
     - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}

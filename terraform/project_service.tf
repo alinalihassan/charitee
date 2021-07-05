@@ -34,7 +34,7 @@ resource "google_project_service" "billing" {
   service = "cloudbilling.googleapis.com"
 }
 
-# Billing API
+# Resource Manager API
 resource "google_project_service" "resource-manager" {
   project = google_project.web-project.id
   service = "cloudresourcemanager.googleapis.com"

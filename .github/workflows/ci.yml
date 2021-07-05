@@ -32,15 +32,15 @@ jobs:
     - name: Login to GCR
       uses: docker/login-action@v1
       with:
-        registry: eu.gcr.io
+        registry: ${{ secrets.GCLOUD_REGISTRY_URL }}
         username: _json_key
         password: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
     - name: Build & Deploy Docker Image
       run: |-
-        docker build --tag charitee:latest .
-        docker tag charitee:latest eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
-        docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
+        docker build --tag ${{ secrets.APP_NAME }}:latest .
+        docker tag ${{ secrets.APP_NAME }}:latest ${{ secrets.GCLOUD_REGISTRY_URL }}/${{ secrets.GCLOUD_PROJECT_ID }}/${{ secrets.APP_NAME }}:latest
+        docker push ${{ secrets.GCLOUD_REGISTRY_URL }}/${{ secrets.GCLOUD_PROJECT_ID }}/${{ secrets.APP_NAME }}:latest
 
     - uses: hashicorp/setup-terraform@v1
       with:
@@ -85,6 +85,6 @@ jobs:
     
     - name: Google Cloud Run Redeploy
       run: |-
-        gcloud run deploy charitee-service \
-        --image eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest \
-        --region europe-west6
+        gcloud run deploy ${{ secrets.APP_NAME }}-service \
+        --image ${{ secrets.GCLOUD_REGISTRY_URL }}/${{ secrets.GCLOUD_PROJECT_ID }}/${{ secrets.APP_NAME }}:latest \
+        --region ${{ secrets.GCLOUD_REGION }}

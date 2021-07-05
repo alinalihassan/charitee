@@ -1,13 +1,13 @@
-resource "google_secret_manager_secret" "charitee-service-secrets" {
-  project = google_project.web-project.id
-  secret_id = "charitee-service"
+# resource "google_secret_manager_secret" "charitee_service_secrets" {
+#   project = google_project.web_project.id
+#   secret_id = "charitee-service"
 
-  replication {
-    automatic = true
-  }
-}
+#   replication {
+#     automatic = true
+#   }
+# }
 
-data "google_secret_manager_secret_version" "basic" {
-  project = google_project.web-project.id
-  secret = "charitee-service"
-}
+# data "google_secret_manager_secret_version" "charitee_secrets" {
+#   project = google_project.web_project.id
+#   secret = google_secret_manager_secret.charitee_service_secrets.id
+# }

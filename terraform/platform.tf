@@ -7,14 +7,14 @@ resource "google_folder" "main" {
   parent       = data.google_organization.org.name
 }
 
-resource "google_folder" "main-shared" {
+resource "google_folder" "main_shared" {
   display_name = "Shared"
   parent       = google_folder.main.name
 }
 
-resource "google_project" "web-project" {
+resource "google_project" "web_project" {
   name            = "Charitee Web App"
-  project_id      = "charitee-project-${var.environment}-1"
+  project_id      = "charitee"
   folder_id       = google_folder.main.name
-  billing_account = data.google_billing_account.billing-account.id
+  billing_account = data.google_billing_account.billing_account.id
 }

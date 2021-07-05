@@ -44,17 +44,12 @@ jobs:
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         export_default_credentials: true
     
-    - name: Push Image to Google Registry Container
-      run: |-
-        docker tag charitee eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee
-        docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee
-    
-    # - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
-    #   with:
-    #     gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-    #     registry: eu.gcr.io
-    #     project_id: charitee-project-dev-1
-    #     image_name: charitee
+    - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
+      with:
+        gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        registry: eu.gcr.io
+        project_id: charitee-project-dev-1
+        image_name: charitee
 
     - uses: hashicorp/setup-terraform@v1
       with:

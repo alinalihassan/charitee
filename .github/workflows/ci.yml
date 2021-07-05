@@ -22,30 +22,12 @@ jobs:
         node-version: '16'
         check-latest: true
 
-    - name: Load .env file
-      uses: xom9ikk/dotenv@v1.0.2
-
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-
-    - name: Install packages
-      run: yarn run bootstrap --ci
-
-    - name: Build packages
-      run: yarn run build
-
-    - name: Build Docker Image
-      run: docker build --tag charitee:latest .
-    
     - name: Set up Google Cloud
       uses: google-github-actions/setup-gcloud@master
       with:
         project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         export_default_credentials: true
-    
-    - name: Test
-      run: gcloud projects list
     
     - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
       with:
@@ -84,6 +66,8 @@ jobs:
       run: terraform plan -no-color
       if: github.event_name == 'pull_request'
       working-directory: terraform
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
     - name: Terraform Apply
       id: apply
@@ -91,8 +75,7 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: terraform
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
     
     - name: Google Cloud Run Redeploy
       run: |-

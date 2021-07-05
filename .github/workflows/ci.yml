@@ -44,12 +44,18 @@ jobs:
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         export_default_credentials: true
     
-    - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
-      with:
-        gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-        registry: eu.gcr.io
-        project_id: charitee-project-dev-1
-        image_name: charitee
+    - name: Push Image to Google Registry Container
+      run: |-
+        gcloud builds submit \
+          --quiet \
+          --tag "eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest"
+    
+    # - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
+    #   with:
+    #     gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+    #     registry: eu.gcr.io
+    #     project_id: charitee-project-dev-1
+    #     image_name: charitee
 
     - uses: hashicorp/setup-terraform@v1
       with:
@@ -92,4 +98,8 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
     - name: Google Cloud Run Redeploy
-      run: gcloud run deploy charitee-service --image eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest --region europe-west6
+      run: |-
+        gcloud run deploy charitee-service \
+        --image eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest \
+        --region europe-west6
+        --quiet

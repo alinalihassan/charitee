@@ -28,13 +28,19 @@ jobs:
         project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         export_default_credentials: true
-    
-    - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
-      with:
-        gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-        registry: eu.gcr.io
-        project_id: charitee-project-dev-1
-        image_name: charitee
+
+    - name: Build & Deploy Docker Image
+      run: |-
+        docker build --tag charitee:latest .
+        docker tag charitee:latest eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
+        docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest
+
+    # - uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
+    #   with:
+    #     gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+    #     registry: eu.gcr.io
+    #     project_id: charitee-project-dev-1
+    #     image_name: charitee
 
     - uses: hashicorp/setup-terraform@v1
       with:
@@ -82,4 +88,3 @@ jobs:
         gcloud run deploy charitee-service \
         --image eu.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/charitee:latest \
         --region europe-west6
-        --quiet

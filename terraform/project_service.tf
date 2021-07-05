@@ -6,7 +6,7 @@ resource "google_project_service" "service_usage" {
   disable_on_destroy = true
 }
 
-# # CloudRun API
+# CloudRun API
 resource "google_project_service" "cloud_run" {
   project = google_project.web_project.id
   service = "run.googleapis.com"

@@ -12,68 +12,55 @@ resource "google_cloud_run_service" "charitee_service" {
         }
         env {
           name  = "SERVER_HOST"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SERVER_HOST
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SERVER_HOST
         }
         env {
           name  = "DB_USER"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_USER
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_USER
         }
         env {
           name  = "DB_PASSWORD"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_PASSWORD
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_PASSWORD
         }
         env {
           name  = "DB_NAME"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_NAME
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_NAME
         }
         env {
           name  = "DB_HOST"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_HOST
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_HOST
         }
         env {
           name  = "DB_OPTIONS"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_OPTIONS
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_OPTIONS
         }
         env {
           name  = "SMTP_HOST"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_HOST
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_HOST
         }
         env {
           name  = "SMTP_PORT"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_PORT
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_PORT
         }
         env {
           name  = "SMTP_CLIENT_ID"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_ID
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_ID
         }
         env {
           name  = "SMTP_CLIENT_SECRET"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_SECRET
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_SECRET
         }
         env {
           name  = "SMTP_REFRESH_TOKEN"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_REFRESH_TOKEN
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_REFRESH_TOKEN
         }
         env {
           name  = "SMTP_FROM_EMAIL"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_FROM_EMAIL
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_FROM_EMAIL
         }
         env {
           name  = "JWT_SECRET"
-          value = ""
-          # value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).JWT_SECRET
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).JWT_SECRET
         }
       }
     }

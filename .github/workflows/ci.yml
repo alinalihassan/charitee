@@ -70,14 +70,6 @@ jobs:
       with:
         directory: 'terraform'
 
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -no-color
-      if: github.event_name == 'pull_request'
-      working-directory: terraform
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
-
     - name: Terraform Apply
       id: apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'

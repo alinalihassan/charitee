@@ -24,6 +24,7 @@ jobs:
 
     - name: Set up Google Cloud
       uses: google-github-actions/setup-gcloud@master
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       with:
         project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
         service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
@@ -31,12 +32,14 @@ jobs:
 
     - name: Login to GCR
       uses: docker/login-action@v1
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       with:
         registry: ${{ secrets.GCLOUD_REGISTRY_URL }}
         username: _json_key
         password: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
     - name: Build & Deploy Docker Image
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: |-
         docker build --tag ${{ secrets.APP_NAME }}:latest .
         docker tag ${{ secrets.APP_NAME }}:latest ${{ secrets.GCLOUD_REGISTRY_URL }}/${{ secrets.GCLOUD_PROJECT_ID }}/${{ secrets.APP_NAME }}:latest
@@ -84,6 +87,7 @@ jobs:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
     
     - name: Google Cloud Run Redeploy
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: |-
         gcloud run deploy ${{ secrets.APP_NAME }}-service \
         --image ${{ secrets.GCLOUD_REGISTRY_URL }}/${{ secrets.GCLOUD_PROJECT_ID }}/${{ secrets.APP_NAME }}:latest \

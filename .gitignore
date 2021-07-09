@@ -20,3 +20,6 @@ yarn-error.log*
 
 # IDE
 .vscode
+
+# Environment variables
+.env

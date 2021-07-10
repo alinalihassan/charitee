@@ -6,18 +6,36 @@ import { DataResponse, IOrganization, ManyDataResponse } from "../models/Interfa
 import { StatusCodes } from "http-status-codes"
 
 export class OrganizationService {
-    public async get(page: number = 0, themeId: string = null, countryCode: string = null): Promise<ManyDataResponse<IOrganization>> {
+    public async get(page: number = 0, themeIds: string = null, countryCodes: string = null): Promise<ManyDataResponse<IOrganization>> {
         let query: any = {}
     
-        const theme: IThemeDocument = await Theme.findOne({id: themeId}).exec()
-        const country: ICountryDocument = await Country.findOne({countryCode: countryCode}).exec()
-    
-        if (theme != null) {
-            query.themes = theme._id
-        }
-        if (country != null) {
-            query.address.country = country._id
-        }
+        if (themeIds != null) {
+            const themes: Array<IThemeDocument> = await Theme.find().exec();
+            const themesList = themeIds.split(',');
+            const themeIdList: Array<String> = [];
+      
+            themes.forEach((theme: IThemeDocument) => {
+              if (themesList.includes(theme.id)) {
+                themeIdList.push(theme._id);
+              }
+            });
+      
+            query.themes = { $in: themeIdList }
+          }
+      
+          if (countryCodes != null) {
+            const countries: Array<ICountryDocument> = await Country.find().exec();
+            const countriesList = countryCodes.split(',');
+            const countryIdsList: Array<String> = [];
+      
+            countries.forEach((country: ICountryDocument) => {
+              if (countriesList.includes(country.countryCode)) {
+                countryIdsList.push(country._id);
+              }
+            });
+      
+            query.countries = { $in: countryIdsList }
+          }
     
         const organizations: IOrganizationDocument[] = await Organization.find(query)
         .populate('themes')

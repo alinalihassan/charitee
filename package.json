@@ -6,8 +6,8 @@
   "author": "Alin Ali Hassan",
   "private": true,
   "scripts": {
-    "lint": "lerna run lint --parallel",
-    "lint:fix": "lerna run lint:fix --parallel",
+    "lint": "lerna run lint --parallel --no-bail",
+    "lint:fix": "lerna run lint:fix --parallel --no-bail",
     "build": "lerna run build --stream",
     "start": "lerna run start --stream",
     "bootstrap": "lerna bootstrap"

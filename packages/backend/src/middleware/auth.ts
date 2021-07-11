@@ -21,7 +21,7 @@ export default async function (
   }
   // Verify token
   try {
-    const {payload, protectedHeader} = await jwtVerify(token, secretKey, {
+    const {payload} = await jwtVerify(token, secretKey, {
       issuer: process.env.APP_NAME,
     });
     req.userId = payload.userId as string;

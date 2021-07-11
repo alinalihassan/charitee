@@ -21,7 +21,7 @@ export class OrganizationService {
   ): Promise<ManyDataResponse<IOrganization>> {
     const query: any = {};
 
-    if (themeIds != null) {
+    if (themeIds !== null) {
       const themes: Array<IThemeDocument> = await Theme.find().exec();
       const themesList = themeIds.split(',');
       const themeIdList: Array<String> = [];
@@ -37,7 +37,7 @@ export class OrganizationService {
       }
     }
 
-    if (countryCodes != null) {
+    if (countryCodes !== null) {
       const countries: Array<ICountryDocument> = await Country.find().exec();
       const countriesList = countryCodes.split(',');
       const countryIdsList: Array<String> = [];
@@ -63,7 +63,7 @@ export class OrganizationService {
       .exec();
 
     const count: number = await Organization.countDocuments(query);
-    const nextPage: number = organizations.length == 10 ? page + 10 : null;
+    const nextPage: number = organizations.length === 10 ? page + 10 : null;
 
     return {
       status: StatusCodes.OK,

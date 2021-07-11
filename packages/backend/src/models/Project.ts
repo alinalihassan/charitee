@@ -1,111 +1,121 @@
-import { Model, model, Schema } from "mongoose";
-import { IProjectDocument } from "./Documents";
+import {Model, model, Schema} from 'mongoose';
+import {IProjectDocument} from './Documents';
 
 const projectSchema: Schema = new Schema({
   active: {
     type: Boolean,
-    required: true
+    required: true,
   },
   activities: {
-    type: String
+    type: String,
   },
   additionalDocumentation: {
-    type: String
+    type: String,
   },
   approvedDate: {
-    type: Date
+    type: Date,
   },
   country: {
     type: Schema.Types.ObjectId,
-    ref: "Country"
+    ref: 'Country',
   },
-  countries: [{
-    type: Schema.Types.ObjectId,
-    ref: "Country"
-  }],
-  dateOfMostRecentReport: {
-    type: Date
-  },
-  donationOptions: [{
-    amount: {
-      type: Number,
+  countries: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Country',
     },
-    description: {
-      type: String
-    }
-  }],
+  ],
+  dateOfMostRecentReport: {
+    type: Date,
+  },
+  donationOptions: [
+    {
+      amount: {
+        type: Number,
+      },
+      description: {
+        type: String,
+      },
+    },
+  ],
   funding: {
-    type: Number
+    type: Number,
   },
   goal: {
-    type: Number
+    type: Number,
   },
-  images: [{
-    url: {
-      type: String
+  images: [
+    {
+      url: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
     },
-    title: {
-      type: String
-    }
-  }],
+  ],
   longTermImpact: {
-    type: String
+    type: String,
   },
   modifiedDate: {
-    type: Date
+    type: Date,
   },
   need: {
-    type: String
+    type: String,
   },
   notice: {
-    type: String
+    type: String,
   },
   numberOfDonations: {
-    type: Number
+    type: Number,
   },
   numberOfReports: {
-    type: Number
+    type: Number,
   },
   organization: {
     type: Schema.Types.ObjectId,
-    ref: "Organization"
+    ref: 'Organization',
   },
   progressReportLink: {
-    type: String
+    type: String,
   },
   projectLink: {
-    type: String
+    type: String,
   },
   remaining: {
-    type: Number
+    type: Number,
   },
   status: {
-    type: String
+    type: String,
   },
   summary: {
-    type: String
+    type: String,
   },
-  themes: [{
-    type: Schema.Types.ObjectId,
-    ref: "Theme"
-  }],
+  themes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Theme',
+    },
+  ],
   title: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   type: {
     type: String,
-    required: true
+    required: true,
   },
-  videos: [{
-    url: {
-      type: String,
-      required: true
-    }
-  }]
+  videos: [
+    {
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
-const Project: Model<IProjectDocument> = model("Project", projectSchema);
+const Project: Model<IProjectDocument> = model('Project', projectSchema);
 
 export default Project;

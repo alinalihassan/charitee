@@ -18,7 +18,7 @@ export interface ManyDataResponse<T> {
 export interface ErrorMsg {
   status: number;
   message: string;
-  detail?: string
+  detail?: string;
 }
 
 export interface IDonationOption {

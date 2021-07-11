@@ -1,64 +1,70 @@
-import { Model, model, Schema } from "mongoose";
-import { IOrganizationDocument } from "./Documents";
+import {Model, model, Schema} from 'mongoose';
+import {IOrganizationDocument} from './Documents';
 
 const organizationSchema: Schema = new Schema({
   activeProjects: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   address: {
     addressLine1: {
-      type: String
+      type: String,
     },
     addressLine2: {
       type: String,
     },
     postcode: {
-      type: String
+      type: String,
     },
     city: {
-      type: String
+      type: String,
     },
     state: {
-      type: String
+      type: String,
     },
     country: {
       type: Schema.Types.ObjectId,
-      ref: "Country"
-    }
+      ref: 'Country',
+    },
   },
   ein: {
-    type: String
+    type: String,
   },
   logoUrl: {
-    type: String
+    type: String,
   },
   mission: {
-    type: String
+    type: String,
   },
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   provider: {
     type: String,
-    required: true
+    required: true,
   },
   totalProjects: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   url: {
-    type: String
+    type: String,
   },
-  themes: [{
-    type: Schema.Types.ObjectId, ref: 'Theme'
-  }]
+  themes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Theme',
+    },
+  ],
 });
 
-const Organization: Model<IOrganizationDocument> = model("Organization", organizationSchema);
+const Organization: Model<IOrganizationDocument> = model(
+  'Organization',
+  organizationSchema
+);
 
 export default Organization;

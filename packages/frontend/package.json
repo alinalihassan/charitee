@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "author": "Alin Ali Hassan",
   "scripts": {
+    "lint": "eslint . --ignore-path ../../.eslintignore",
+    "lint:fix": "eslint --fix . --ignore-path ../../.eslintignore",
     "start:dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

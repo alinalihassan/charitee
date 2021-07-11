@@ -1,15 +1,22 @@
-import Theme from "../models/Theme"
-import { IThemeDocument, ICountryDocument, IProjectDocument } from "../models/Documents"
-import Country from "../models/Country"
-import Project from "../models/Project"
-import { DataResponse, IProject } from "../models/Interfaces"
-import { ManyDataResponse } from "../models/Interfaces"
-import { StatusCodes } from "http-status-codes"
+import Theme from '../models/Theme';
+import {
+  IThemeDocument,
+  ICountryDocument,
+  IProjectDocument,
+} from '../models/Documents';
+import Country from '../models/Country';
+import Project from '../models/Project';
+import {DataResponse, IProject} from '../models/Interfaces';
+import {ManyDataResponse} from '../models/Interfaces';
+import {StatusCodes} from 'http-status-codes';
 
 export class ProjectService {
-  public async get(page: number = 0, themeIds: string = null, countryCodes: string = null): Promise<ManyDataResponse<IProject>> {
-    let query: any = {}
-
+  public async get(
+    page = 0,
+    themeIds: string = null,
+    countryCodes: string = null
+  ): Promise<ManyDataResponse<IProject>> {
+    const query: any = {};
 
     if (themeIds != null) {
       const themes: Array<IThemeDocument> = await Theme.find().exec();
@@ -23,7 +30,7 @@ export class ProjectService {
       });
 
       if (themeIdList.length > 0) {
-        query.themes = { $in: themeIdList }
+        query.themes = {$in: themeIdList};
       }
     }
 
@@ -39,33 +46,40 @@ export class ProjectService {
       });
 
       if (countryIdsList.length > 0) {
-        query.countries = { $in: countryIdsList }
+        query.countries = {$in: countryIdsList};
       }
     }
 
-    console.log(query)
+    console.log(query);
 
     const projects: IProjectDocument[] = await Project.find(query)
       .populate('themes')
       .populate('countries')
-      .limit(10).skip(page).exec();
+      .limit(10)
+      .skip(page)
+      .exec();
 
-    const count: number = await Project.countDocuments(query)
-    const nextPage: number = projects.length == 10 ? page + 10 : null
+    const count: number = await Project.countDocuments(query);
+    const nextPage: number = projects.length == 10 ? page + 10 : null;
 
-    return { status: StatusCodes.OK, count: count, nextPage: nextPage, data: projects };
+    return {
+      status: StatusCodes.OK,
+      count: count,
+      nextPage: nextPage,
+      data: projects,
+    };
   }
 
   public async getById(id: number): Promise<DataResponse<IProject>> {
-    let project = await Project.findById(id)
+    const project = await Project.findById(id)
       .populate('themes')
       .populate('countries')
       .exec();
-    
+
     if (project) {
-      return {status: StatusCodes.OK, data: project}
+      return {status: StatusCodes.OK, data: project};
     }
-    
-    return {status: StatusCodes.BAD_REQUEST, data: null}
+
+    return {status: StatusCodes.BAD_REQUEST, data: null};
   }
 }

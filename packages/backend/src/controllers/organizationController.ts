@@ -1,19 +1,15 @@
-import { DataResponse, IOrganization, ManyDataResponse} from "../models/Interfaces";
-import { OrganizationService } from "../services/organizationService";
 import {
-  Controller,
-  Get,
-  Path,
-  Query,
-  Route,
-  Tags,
-} from "tsoa";
+  DataResponse,
+  IOrganization,
+  ManyDataResponse,
+} from '../models/Interfaces';
+import {OrganizationService} from '../services/organizationService';
+import {Controller, Get, Path, Query, Route, Tags} from 'tsoa';
 
-@Tags("Organization")
-@Route("organizations")
+@Tags('Organization')
+@Route('organizations')
 export class OrganizationController extends Controller {
-
-  @Get("{organizationId}")
+  @Get('{organizationId}')
   public async getOrganizationById(
     @Path() organizationId: number
   ): Promise<DataResponse<IOrganization>> {

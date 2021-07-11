@@ -5,7 +5,12 @@
   "private": true,
   "license": "UNLICENSED",
   "author": "Alin Ali Hassan",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
+    "lint": "eslint . --ignore-path ../../.eslintignore",
+    "lint:fix": "eslint --fix . --ignore-path ../../.eslintignore",
     "build:mjml": "mkdir -p email_templates/html && mjml email_templates/mjml/*.mjml -o email_templates/html",
     "build:tsoa": "tsoa spec-and-routes",
     "build:ts": "tsc",

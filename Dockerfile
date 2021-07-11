@@ -10,4 +10,4 @@ RUN yarn run build
 
 EXPOSE 80
 
-CMD [ "yarn", "run", "start"]
+CMD [ "yarn", "run", "start", "--scope", "charitee-backend"]

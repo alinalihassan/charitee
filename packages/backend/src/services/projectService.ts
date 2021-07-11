@@ -22,7 +22,9 @@ export class ProjectService {
         }
       });
 
-      query.themes = { $in: themeIdList }
+      if (themeIdList.length > 0) {
+        query.themes = { $in: themeIdList }
+      }
     }
 
     if (countryCodes != null) {
@@ -36,8 +38,12 @@ export class ProjectService {
         }
       });
 
-      query.countries = { $in: countryIdsList }
+      if (countryIdsList.length > 0) {
+        query.countries = { $in: countryIdsList }
+      }
     }
+
+    console.log(query)
 
     const projects: IProjectDocument[] = await Project.find(query)
       .populate('themes')

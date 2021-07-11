@@ -20,22 +20,27 @@ export class OrganizationService {
               }
             });
       
-            query.themes = { $in: themeIdList }
+            if (themeIdList.length > 0) {
+                query.themes = { $in: themeIdList }
+            }
           }
       
-          if (countryCodes != null) {
+        if (countryCodes != null) {
             const countries: Array<ICountryDocument> = await Country.find().exec();
             const countriesList = countryCodes.split(',');
             const countryIdsList: Array<String> = [];
-      
+        
             countries.forEach((country: ICountryDocument) => {
-              if (countriesList.includes(country.countryCode)) {
+                if (countriesList.includes(country.countryCode)) {
                 countryIdsList.push(country._id);
-              }
+                }
             });
-      
-            query.countries = { $in: countryIdsList }
-          }
+        
+
+            if (countryIdsList.length > 0) {
+                query.countries = { $in: countryIdsList }
+            }
+        }
     
         const organizations: IOrganizationDocument[] = await Organization.find(query)
         .populate('themes')

@@ -1,0 +1,23 @@
+{
+  "entryFile": "src/server.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/**/*Controller.ts"],
+  "spec": {
+    "outputDirectory": "src",
+    "basePath": "/api",
+    "specVersion": 3,
+    "securityDefinitions": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "description": "Token Authentication",
+        "in": "header"
+      }
+    }
+  },
+  "routes": {
+    "authenticationModule": "./src/middleware/security/passport.ts",
+    "routesDir": "src",
+    "basePath": "/api"
+  }
+}

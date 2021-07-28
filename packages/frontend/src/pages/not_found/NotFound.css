@@ -1,0 +1,45 @@
+.notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform:translate(-50%, -50%);
+  max-width: 710px;
+  width: 100%;
+  text-align: center;
+  padding: 0 15px;
+  line-height:1.4;
+  justify-content: center;
+}
+
+.notfound .notfound-404 {
+  height: 120px;
+}
+
+.notfound .notfound-404 h1 {
+  font-size: 200px;
+  margin: 0;
+  color: var(--primary-color);
+  text-transform:uppercase
+}
+
+.notfound h2 {
+  font-family: raleway, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #222;
+  margin:0
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+      height: 122px;
+      line-height:122px
+  }
+
+  .notfound .notfound-404 h1 {
+      font-size: 122px
+  }
+}

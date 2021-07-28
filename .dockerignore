@@ -1,0 +1,19 @@
+# Git
+.git
+.gitignore
+
+# Terraform
+terraform/
+
+# Python Cache
+__pycache__/
+.pytest_cache/
+
+# Node Modules
+*/node_modules/
+
+# README
+README.md
+
+# .env
+.env

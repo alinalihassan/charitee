@@ -1,0 +1,103 @@
+:root, body, #root {
+  height: 100%;
+}
+
+:root {
+  --text-color: #2d2d2d;
+  --primary-color: #ff1742;
+}
+
+.App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: -0.7px;
+  margin-bottom: 30px;
+}
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 4.5rem;
+    line-height: 5rem;
+  }
+}
+
+h2 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  margin: 15px 0;
+}
+@media (min-width: 992px) {
+  h2 {
+    font-size: 3rem;
+    line-height: 4rem;
+    margin: 30px 0;
+  }
+}
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 3.3rem;
+    line-height: 4rem;
+    margin: 30px 0;
+  }
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+a {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #535353;
+}
+
+strong {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+}
+
+/* Fonts */
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../../assets/fonts/Manrope.ttf") format("truetype-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 200%;
+  font-display: swap;
+}

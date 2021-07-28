@@ -1,0 +1,19 @@
+.button {
+  display: inline-block;
+  border-radius: 8px;
+  background: var(--primary-color);
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 15px 60px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+.button:hover {
+  opacity: 0.75;
+  color: #fff;
+}

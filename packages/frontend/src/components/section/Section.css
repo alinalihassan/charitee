@@ -40,6 +40,7 @@
   margin: auto;
   width: 280px;
   height: 561.25px;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .reversed .phone {

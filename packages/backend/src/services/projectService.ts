@@ -50,8 +50,6 @@ export class ProjectService {
       }
     }
 
-    console.log(query);
-
     const projects: IProjectDocument[] = await Project.find(query)
       .populate('themes')
       .populate('countries')

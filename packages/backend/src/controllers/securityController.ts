@@ -139,8 +139,6 @@ export class AuthenticationController extends Controller {
       const {payload, protectedHeader} = await jwtVerify(token, secretKey, {
         issuer: process.env.APP_NAME,
       });
-      console.log(payload);
-      console.log(protectedHeader);
       userId = payload.userId as string;
     } catch (err) {
       throw new CustomError({

@@ -2,6 +2,7 @@ resource "google_cloud_run_service" "charitee_service" {
   name     = "charitee-service"
   location = var.region
   project  = google_project.web_project.project_id
+  autogenerate_revision_name = true
 
   template {
     spec {

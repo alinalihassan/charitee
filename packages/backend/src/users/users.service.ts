@@ -33,15 +33,15 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+    return this.userModel.find().select('-password').exec();
   }
 
   async findById(id: string): Promise<User | undefined> {
-    return this.userModel.findById(id).exec();
+    return this.userModel.findById(id).select('-password').exec();
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
-    return this.userModel.findOne({ email: email }).exec();
+    return this.userModel.findOne({ email: email }).select('-password').exec();
   }
 
   async confirmEmail(email: string): Promise<void> {

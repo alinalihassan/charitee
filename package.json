@@ -10,6 +10,7 @@
     "lint:fix": "lerna run lint:fix --parallel --no-bail",
     "build": "lerna run build --stream",
     "start": "lerna run start --stream",
+    "start-backend": "lerna run start:prod --stream --scope charitee-backend",
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {

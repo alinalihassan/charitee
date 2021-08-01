@@ -2,6 +2,7 @@ resource "google_cloud_run_service" "charitee_service" {
   name     = "charitee-service"
   location = var.region
   project  = google_project.web_project.project_id
+  autogenerate_revision_name = true
 
   template {
     spec {
@@ -9,6 +10,10 @@ resource "google_cloud_run_service" "charitee_service" {
         image = data.google_container_registry_image.charitee_image.image_url
         ports {
           container_port = var.app_port
+        }
+        env {
+          name  = "APP_NAME"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).APP_NAME
         }
         env {
           name  = "SERVER_HOST"
@@ -35,32 +40,32 @@ resource "google_cloud_run_service" "charitee_service" {
           value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).DB_OPTIONS
         }
         env {
-          name  = "SMTP_HOST"
-          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_HOST
-        }
-        env {
-          name  = "SMTP_PORT"
-          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_PORT
-        }
-        env {
-          name  = "SMTP_CLIENT_ID"
-          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_ID
-        }
-        env {
-          name  = "SMTP_CLIENT_SECRET"
-          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_CLIENT_SECRET
-        }
-        env {
-          name  = "SMTP_REFRESH_TOKEN"
-          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_REFRESH_TOKEN
-        }
-        env {
           name  = "SMTP_FROM_EMAIL"
           value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_FROM_EMAIL
         }
         env {
+          name  = "SMTP_FROM_NAME"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SMTP_FROM_NAME
+        }
+        env {
+          name  = "GLOBALGIVING_KEY"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).GLOBALGIVING_KEY
+        }
+        env {
+          name  = "SENDGRID_KEY"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).SENDGRID_KEY
+        }
+        env {
           name  = "JWT_SECRET"
           value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).JWT_SECRET
+        }
+        env {
+          name  = "IMAGE_INLINE_SIZE_LIMIT"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).IMAGE_INLINE_SIZE_LIMIT
+        }
+        env {
+          name  = "INLINE_RUNTIME_CHUNK"
+          value = jsondecode(data.google_secret_manager_secret_version.charitee_secrets.secret_data).INLINE_RUNTIME_CHUNK
         }
       }
     }

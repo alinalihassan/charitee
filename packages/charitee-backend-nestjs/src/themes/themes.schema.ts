@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { Document, Types } from 'mongoose';
 
 export type ThemeDocument = Theme & Document;
@@ -11,9 +12,11 @@ export class Theme {
   @Prop({ type: Number, select: false})
   __v: number;
 
+  @ApiProperty()
   @Prop({ required: true })
   id: string;
 
+  @ApiProperty()
   @Prop({ required: true })
   name: string;
 }

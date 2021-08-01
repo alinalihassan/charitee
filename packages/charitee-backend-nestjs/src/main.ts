@@ -12,6 +12,7 @@ async function bootstrap() {
     .setTitle('Charitee API')
     .setDescription('Charitee API description')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

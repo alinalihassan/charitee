@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Organization } from './organizations.schema';
 import { OrganizationsService } from './organizations.service';
 
 @ApiTags('organizations')
@@ -20,12 +21,12 @@ export class OrganizationsController {
     required: false,
   })
   @Get()
-  get(@Query('page') page?: string, @Query('themeIds') themeIds?: string, @Query('countryCodes') countryCodes?: string): Promise<any> {
+  get(@Query('page') page?: string, @Query('themeIds') themeIds?: string, @Query('countryCodes') countryCodes?: string): Promise<Organization[]> {
     return this.organizationsService.findAll(page? +page : 0, themeIds, countryCodes);
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
+  getById(@Param('id') id: string): Promise<Organization> {
     return this.organizationsService.findById(id);
   }
 }

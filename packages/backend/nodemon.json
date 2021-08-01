@@ -1,8 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "ignore": ["*.test.ts", "src/routes.ts"],
-  "events": {
-    "restart": "yarn run build:tsoa & yarn run build:ts"
-  }
-}

@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Project } from './projects.schema';
 import { ProjectsService } from './projects.service';
 
@@ -20,6 +20,7 @@ export class ProjectsController {
     name: 'countryCodes',
     required: false,
   })
+  @ApiOperation({ summary: 'Get all Projects in chunks of 10, filter by comma separated themes and countries' })
   @Get()
   get(
     @Query('page') page?: string,
@@ -33,6 +34,7 @@ export class ProjectsController {
     );
   }
 
+  @ApiOperation({ summary: 'Get a Project by ID.' })
   @Get(':id')
   getById(@Param('id') id: string): Promise<Project> {
     return this.projectsService.findById(id);

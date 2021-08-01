@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Country } from './countries.schema';
 import { CountriesService } from './countries.service';
 
@@ -10,11 +10,13 @@ export class CountriesController {
 
   // @ApiBearerAuth()
   // @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get all Countries' })
   @Get()
   get(): Promise<Country[]> {
     return this.countriesService.findAll();
   }
 
+  @ApiOperation({ summary: 'Get a Country by ID' })
   @Get(':id')
   getById(@Param('id') id: string): Promise<Country> {
     return this.countriesService.findById(id);

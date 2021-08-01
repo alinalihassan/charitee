@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Theme } from './themes.schema';
 import { ThemesService } from './themes.service';
 
@@ -8,11 +8,13 @@ import { ThemesService } from './themes.service';
 export class ThemesController {
   constructor(private readonly themesService: ThemesService) {}
 
+  @ApiOperation({ summary: 'Get all themes.' })
   @Get()
   get(): Promise<Theme[]> {
     return this.themesService.findAll();
   }
 
+  @ApiOperation({ summary: 'Get a theme by ID.' })
   @Get(':id')
   getById(@Param('id') id: string): Promise<Theme> {
     return this.themesService.findById(id);

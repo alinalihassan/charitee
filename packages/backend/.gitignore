@@ -1,16 +1,1 @@
 email_templates/html/
-
-.vscode/
-
-src/routes.ts
-
-src/swagger.json
-
-*.log
-
-# Local .terraform directories
-**/.terraform/*
-
-# .tfstate files
-*.tfstate
-*.tfstate.*

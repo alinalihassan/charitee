@@ -20,7 +20,7 @@ variable "domain_name" {
 
 variable "app_port" {
   description = "App Port"
-  default = 80
+  default     = 80
 }
 
 variable "email_mx_records" {

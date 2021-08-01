@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "ES2020",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]
-    },
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src/**/*"]
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true
+  }
 }

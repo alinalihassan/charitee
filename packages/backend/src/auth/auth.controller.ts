@@ -52,6 +52,7 @@ export class AuthController {
     }
   }
 
+  @ApiOperation({ summary: 'Verify a user\'s email. The link with the token is included in the confirmation email.' })
   @Get('verify/:token')
   public async verifyEmail(@Param('token') token: string): Promise<IResponse> {
     try {
@@ -62,6 +63,7 @@ export class AuthController {
     }
   }
 
+  @ApiOperation({ summary: 'Resend a user\'s confirmation email.' })
   @Get('resend-verification/:email')
   public async sendEmailVerification(
     @Param('email') email: string,
@@ -74,6 +76,7 @@ export class AuthController {
     }
   }
 
+  @ApiOperation({ summary: 'Send an email to the user to initiate resetting the password.' })
   @Get('email/forgot-password/:email')
   public async sendEmailForgotPassword(
     @Param('email') email: string,
@@ -86,6 +89,7 @@ export class AuthController {
     }
   }
 
+  @ApiOperation({ summary: 'Reset the user\s password. It needs the token from email.' })
   @Post('reset-password')
   public async setNewPassword(
     @Body() resetPassword: ResetPasswordDto,

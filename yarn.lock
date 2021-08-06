@@ -3356,9 +3356,9 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@^16.0.0", "@types/node@^16.4.6":
-  version "16.4.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.10.tgz#e57e2a54fc6da58da94b3571b1cb456d39f88597"
-  integrity sha512-TmVHsm43br64js9BqHWqiDZA+xMtbUpI1MBIA0EyiBmoV9pcEYFOSdj5fr6enZNfh4fChh+AGOLIzGwJnkshyQ==
+  version "16.4.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.12.tgz#961e3091f263e6345d2d84afab4e047a60b4b11b"
+  integrity sha512-zxrTNFl9Z8boMJXs6ieqZP0wAhvkdzmHSxTlJabM16cf5G9xBc1uPRH5Bbv2omEDDiM8MzTfqTJXBf0Ba4xFWA==
 
 "@types/node@^14.0.1":
   version "14.17.3"
@@ -14599,9 +14599,9 @@ react-error-overlay@^6.0.9:
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
 react-grid-system@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-7.2.0.tgz#ed26120a8fca5b1fbb79987c8820c7be04ba3968"
-  integrity sha512-pWjtcEFVuQb8ODyK4xdzAaMmpDXy2EKizy5EeiDs6iyBkZlBnlNDFo6ImGnE7Ry8D4nFiXs3BGqoDtLaUzWi2Q==
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-7.3.0.tgz#da7c00adfd4b6b2256e1c2df9bed46b2e00bcc07"
+  integrity sha512-iOdCojTWX9NyvfveSh7tYx+3FtsJtjVsM1MN6CH32LJ97fMnAXTO2uBqXx7qY49ntkiWxBIvPmMjp7IDwL+E0w==
   dependencies:
     prop-types "^15.7.2"
 

@@ -14477,9 +14477,9 @@ react-error-overlay@^6.0.9:
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
 react-grid-system@^7.2.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-7.3.0.tgz#da7c00adfd4b6b2256e1c2df9bed46b2e00bcc07"
-  integrity sha512-iOdCojTWX9NyvfveSh7tYx+3FtsJtjVsM1MN6CH32LJ97fMnAXTO2uBqXx7qY49ntkiWxBIvPmMjp7IDwL+E0w==
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-7.3.1.tgz#034ad701ec894ba7a7eb0a4bd715d83be08c598b"
+  integrity sha512-q5dTeKURLZ2lAFLTjMKdjgubhibIu+EvdT838bcki/rQ8ftJGm+afzZHT2Da6BASWYpXo9+OSIS9M7VFp4/gbQ==
   dependencies:
     prop-types "^15.7.2"
 

@@ -15,7 +15,7 @@ export class UsersService {
       if (!userRegistered) {
         newUser.password = await hash(newUser.password, 10);
         const createdUser = new this.userModel(newUser);
-        return await createdUser.save();
+        return createdUser.save();
       } else if (!userRegistered.isVerified) {
         return userRegistered;
       } else {
@@ -40,8 +40,8 @@ export class UsersService {
     return this.userModel.findById(id).select('-password').exec();
   }
 
-  async findByEmail(email: string): Promise<User | undefined> {
-    return this.userModel.findOne({ email: email }).select('-password').exec();
+  async findByEmail(email: string, include_pass: boolean = false): Promise<User | undefined> {
+    return this.userModel.findOne({ email: email }).select(include_pass ? '' : '-password').exec();
   }
 
   async confirmEmail(email: string): Promise<void> {

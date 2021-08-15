@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import {
   HealthCheck,
@@ -17,6 +17,7 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Check health status of service components' })
   check(): Promise<HealthCheckResult> {
     return this.health.check([() => this.mongoose.pingCheck('db')]);

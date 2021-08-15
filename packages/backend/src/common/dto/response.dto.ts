@@ -1,45 +1,33 @@
-import { IResponse } from '../interfaces/response.interface';
+import { HttpException, HttpStatus } from "@nestjs/common";
+import { JSendErrorObject, JSendErrorObjectwithData, JSendFailureObject, JSendFailureObjectwithData, JSendSuccessObject } from "../interfaces/response.interface";
 
-export class ResponseError implements IResponse {
-  constructor(infoMessage: string, data?: any) {
-    this.success = false;
-    this.message = infoMessage;
-    this.data = data;
-    console.warn(
-      new Date().toString() +
-        ' - [Response]: ' +
-        infoMessage +
-        (data ? ' - ' + JSON.stringify(data) : ''),
-    );
-  }
-  message: string;
-  data: any[];
-  errorMessage: any;
-  error: any;
-  success: boolean;
-}
 
-export class ResponseSuccess implements IResponse {
-  constructor(infoMessage: string, data?: any, notLog?: boolean) {
-    this.success = true;
-    this.message = infoMessage;
-    this.data = data;
-    if (!notLog) {
-      try {
-        const offuscateRequest = JSON.parse(JSON.stringify(data));
-        if (offuscateRequest && offuscateRequest.token)
-          offuscateRequest.token = '*******';
-        console.log(
-          new Date().toString() +
-            ' - [Response]: ' +
-            JSON.stringify(offuscateRequest),
-        );
-      } catch (error) {}
-    }
-  }
-  message: string;
-  data: any[];
-  errorMessage: any;
-  error: any;
-  success: boolean;
-}
+export const success = <T extends object | null>(
+  data?: T, message?: string
+): JSendSuccessObject<T> => {
+  return {
+    status: "success",
+    message,
+    data,
+  };
+};
+
+export const fail = <T extends object>(
+  message: string | { message: string; data?: T }, code?: HttpStatus
+): JSendFailureObject | JSendFailureObjectwithData<T> => {
+  throw new HttpException({
+    status: "fail",
+    message: typeof message === "string" ? message : message.message,
+    ...(typeof message !== "string" && { data: message.data }),
+  }, code ? code : HttpStatus.BAD_REQUEST);
+};
+
+export const error = <T extends object>(
+  message: string | { message: string; data?: T }, code?: HttpStatus
+): JSendErrorObject | JSendErrorObjectwithData<T> => {
+  throw new HttpException({
+    status: "error",
+    message: typeof message === "string" ? message : message.message,
+    ...(typeof message !== "string" && { data: message.data }),
+  }, code ? code : HttpStatus.INTERNAL_SERVER_ERROR);
+};

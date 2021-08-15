@@ -8,8 +8,8 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ResponseError, ResponseSuccess } from 'src/common/dto/response.dto';
-import { IResponse } from 'src/common/interfaces/response.interface';
+import { error, success } from 'src/common/dto/response.dto';
+import { JSendObject } from 'src/common/interfaces/response.interface';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
@@ -39,27 +39,34 @@ export class AuthController {
       'Register the user in the platform, an automatic confirmation email is sent.',
   })
   @Post('register')
-  async register(@Body() createUserDto: CreateUserDto): Promise<IResponse> {
+  async register(@Body() createUserDto: CreateUserDto): Promise<JSendObject<null>> {
     try {
       const newUser = await this.userService.create(createUserDto);
       await this.authService.createEmailToken(newUser.email);
       await this.authService.sendEmailVerification(newUser.email);
 
-      return new ResponseSuccess('REGISTRATION.USER_REGISTERED_SUCCESSFULLY');
-    } catch (error) {
-      console.trace(error);
-      return new ResponseError('REGISTRATION.ERROR.GENERIC_ERROR', error);
+      return success(null, 'REGISTRATION.USER_REGISTERED_SUCCESSFULLY');
+    } catch (err) {
+      console.trace(err);
+      return error({
+        message: 'Registration error',
+        data: err,
+      });
     }
   }
 
   @ApiOperation({ summary: 'Verify a user\'s email. The link with the token is included in the confirmation email.' })
   @Get('verify/:token')
-  public async verifyEmail(@Param('token') token: string): Promise<IResponse> {
+  public async verifyEmail(@Param('token') token: string): Promise<JSendObject<null>> {
     try {
-      const isEmailVerified = await this.authService.verifyEmail(token);
-      return new ResponseSuccess('LOGIN.EMAIL_VERIFIED', isEmailVerified);
-    } catch (error) {
-      return new ResponseError('LOGIN.ERROR', error);
+      await this.authService.verifyEmail(token);
+      return success(null, 'Email verified successfully');
+    } catch (err) {
+      console.trace(err);
+      return error({
+        message: 'Login error', 
+        data: err
+      });
     }
   }
 
@@ -67,12 +74,17 @@ export class AuthController {
   @Get('resend-verification/:email')
   public async sendEmailVerification(
     @Param('email') email: string,
-  ): Promise<IResponse> {
+  ): Promise<JSendObject<null>> {
     try {
       await this.authService.createEmailToken(email);
       await this.authService.sendEmailVerification(email);
-    } catch (error) {
-      return new ResponseError('LOGIN.ERROR.SEND_EMAIL', error);
+      return success(null, "Verification email sent");
+    } catch (err) {
+      console.trace(err);
+      return error({
+        message: 'Send email error', 
+        data: err
+      });
     }
   }
 
@@ -80,12 +92,16 @@ export class AuthController {
   @Get('email/forgot-password/:email')
   public async sendEmailForgotPassword(
     @Param('email') email: string,
-  ): Promise<IResponse> {
+  ): Promise<JSendObject<null>> {
     try {
       await this.authService.sendEmailForgotPassword(email);
-      return new ResponseSuccess('LOGIN.EMAIL_RESENT');
-    } catch (error) {
-      return new ResponseError('LOGIN.ERROR.SEND_EMAIL', error);
+      return success(null, 'Email resent successfully');
+    } catch (err) {
+      console.trace(err);
+      return error({
+        message: 'Send email error', 
+        data: err
+      });
     }
   }
 
@@ -93,7 +109,7 @@ export class AuthController {
   @Post('reset-password')
   public async setNewPassword(
     @Body() resetPassword: ResetPasswordDto,
-  ): Promise<IResponse> {
+  ): Promise<JSendObject<null>> {
     try {
       if (resetPassword.email && resetPassword.currentPassword) {
         await this.authService.validateUser(
@@ -115,11 +131,15 @@ export class AuthController {
         );
         await forgottenPasswordModel.remove();
       } else {
-        return new ResponseError('RESET_PASSWORD.CHANGE_PASSWORD_ERROR');
+        return error('Password change error');
       }
-      return new ResponseSuccess('RESET_PASSWORD.PASSWORD_CHANGED');
-    } catch (error) {
-      return new ResponseError('RESET_PASSWORD.CHANGE_PASSWORD_ERROR', error);
+      return success(null, 'Password changed successfully');
+    } catch (err) {
+      console.trace(err);
+      return error({
+        message: 'Password change error', 
+        data: err
+      });
     }
   }
 }

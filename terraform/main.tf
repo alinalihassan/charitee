@@ -1,7 +1,7 @@
 resource "google_cloud_run_service" "charitee_service" {
-  name     = "charitee-service"
-  location = var.region
-  project  = google_project.web_project.project_id
+  name                       = "charitee-service"
+  location                   = var.region
+  project                    = google_project.web_project.project_id
   autogenerate_revision_name = true
 
   template {
@@ -17,7 +17,7 @@ resource "google_cloud_run_service" "charitee_service" {
           for_each = jsondecode(nonsensitive(data.google_secret_manager_secret_version.charitee_secrets.secret_data)).env
 
           content {
-            name = env.value["name"]
+            name  = env.value["name"]
             value = env.value["value"]
           }
         }
